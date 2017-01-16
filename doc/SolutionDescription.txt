@@ -1,0 +1,26 @@
+Tools:
+Visual Studio 2015 - .Net Framework 4.5
+Nuget packages will be downloaded automatically during the build
+
+Projects:
+App - 	I didn't manage to prepare proper projects separation (business layer, data acces layer etc.), only created folders
+	to group files. I didn't change namespaces of existing files. 
+
+	Main architectural changes:
+	- extracting credit strategies
+	- creating CustomerRepository to encapsulate CustomerDataAccess.
+	- making CustomerDataAccess obsolete - a way to remove static class in the future
+	- moving Customer validation logic to the NewCustomer class(DDD and Animic Domain Model)
+	- created factory responsible for creating CustomerCreditServiceClient
+
+	Next steps:
+	- separating domain and data acces code
+	- creating mappings between domain and data access models
+	- moving validation logic out of repository
+	- covering all public methods with Unit Tests	
+
+App.IntegrationTests - because legacy code came without any tests, my first step was to create integration test to be sure that after
+	the refactoring everything works as originally. This test was maintained and changed accordingly during the refactoring. Can be 
+	removed once refactoring is done.
+
+App.UnitTests - I have managed to test only CustomerService, as my main focus was to have proper and maintained integration test
